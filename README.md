@@ -2,6 +2,11 @@
 Ticket Master
 =============
 
+	npm install
+	./TicketMaster.js
+
+
+
 To start would like to set of commands I can run on the command line that:
 
     1. Get a list of boards for a given user

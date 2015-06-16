@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+"use strict";
+
 var program = require("commander");
+var t = require("./lib/ticketmaster");
 
 var debug = false;
 
@@ -7,30 +10,6 @@ program
 .version("0.0.1")
 .option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
 .option("-t --trello_token <token>", "Trello authentication token.", String, "8077e49daea2a73864d47da3561918650e387bf23330064acc5668cc8fa38b76")
-
-function genericCallbackHandler(a) {
-	if(debug) {
-		console.log(a);
-	}
-}
-
-function Board(id, name, desc, url) {
-
-	return {id: id, name: name, desc: desc, url: url};
-}
-
-//List
-function Group(id, name, closed, parent_board) {
-	return {id: id, name: name, closed: closed, parent_board: parent_board};
-}
-
-function Ticket() {
-
-}
-
-function Comment() {
-
-}
 
 var options = {
 	trello: {
@@ -43,7 +22,6 @@ var options = {
 	}
 }
 
-var t = require("./lib/ticketmaster");
 var TicketMaster = new t(options);
 
 program
@@ -96,6 +74,19 @@ program
 			});
 		});
 	});
+});
+
+program
+.command("populate")
+.description("Generate a directory structure containing information concerning current user's board layout.")
+.action(function() {
+	TicketMaster.init(function() {
+		TicketMaster.trello.genBoards("./dump", function() {
+			TicketMaster.trello.genCols("./dump", function() {
+				console.log("populated");
+			});
+		});
+	})
 });
 
 program.parse(process.argv);

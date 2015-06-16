@@ -85,7 +85,7 @@ program
 					board_id = d[i].id;
 				}
 			}
-			output = output || user.fullName + "_boards.json";
+			output = output || user.fullName + board + "_lists.json";
 			TicketMaster.trello.getLists(board_id, function(err, data) {
 				var Lists = {};
 				for(var i = 0; i < data.length; i++) {

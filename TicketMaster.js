@@ -6,13 +6,16 @@ var open = require("open");
 var clip = require("copy-paste").global();
 
 var t = require("./lib/ticketmaster");
+var trello_key = "";
+var trello_token = "";
 
 var debug = false;
 
 program
 .version("0.0.1")
-.option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
-.option("-t --trello_token <token>", "Trello authentication token.", String, "8077e49daea2a73864d47da3561918650e387bf23330064acc5668cc8fa38b76")
+.option("-k --trello_key <key>", "Trello authentication key.")
+.option("-t --trello_token <token>", "Trello authentication token.")
+.parseOptions(program.normalize(process.argv.slice(2)));
 
 var options = {
 	trello: {
@@ -42,8 +45,6 @@ program
 			process.exit();
 		});
 	}
-	
-
 });
 
 program
@@ -97,7 +98,6 @@ program
 	TicketMaster.init(function() {
 		TicketMaster.trello.genBoards("./dump", function(board_ids) {
 			TicketMaster.trello.genCols("./dump", board_ids, function(col_ids) {
-				console.log(col_ids);
 				TicketMaster.trello.genTickets("./dump", col_ids, function() {
 
 				});

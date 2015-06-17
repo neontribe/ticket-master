@@ -83,7 +83,7 @@ program
 	TicketMaster.init(function() {
 		TicketMaster.trello.genBoards("./dump", function() {
 			TicketMaster.trello.genCols("./dump", function() {
-				console.log("populated");
+				
 			});
 		});
 	})

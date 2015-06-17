@@ -1,19 +1,38 @@
 =======
 Ticket Master
 =============
-
+	##If node not installed:
+		sudo apt-get install nodejs
+		(Program looks for node in /usr/bin/env node)
+	
+	#Get dependencies
 	npm install
+	#Run
 	./TicketMaster.js
 
+  Commands:
+
+    gentrello               Generate a token generation url for trello.
+    boards [output]         Retrieve a list of boards currently accessible to the user. Output -> [directory + filename] to place output, defaults to <username>_boards.json.
+    lists [output] [board]  Retrieves lists in specified board. Output -> [directory + filename] to place output, defaults to <username>_boards.json.
+    populate                Generate a directory structure containing information concerning current user's board layout.
+
+  Options:
+
+    -h, --help                 output usage information
+    -V, --version              output the version number
+    -k --trello_key <key>      Trello authentication key.
+    -t --trello_token <token>  Trello authentication token.
 
 
-To start would like to set of commands I can run on the command line that:
+Commands to implement:
 
-    1. Get a list of boards for a given user
-    1. Get a list of 'columns' for a given user
-    1. Get 'tickets' in a column
-    1. Get 'comments' for a ticket
-    1. Get attachments for a ticket
+-[x] 	Get a list of boards for a given user
+-[x] 	Get a list of 'columns' for a given user
+-[ ] 	Get 'tickets' in a column
+-[ ] 	Get 'comments' for a ticket
+-[ ] 	Get attachments for a ticket
+
 
 Then I would like to see a command/set of commands that let me build a local directory structure of:
 
@@ -37,3 +56,12 @@ Then I would like to see a command/set of commands that let me build a local dir
     +- Board
     ...
 
+
+=======
+Checklist:
+
+-[x]	Board
+-[x]	Column
+-[ ]	Ticket
+-[ ]	Comment
+-[ ]	Attachment

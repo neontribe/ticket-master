@@ -81,9 +81,12 @@ program
 .description("Generate a directory structure containing information concerning current user's board layout.")
 .action(function() {
 	TicketMaster.init(function() {
-		TicketMaster.trello.genBoards("./dump", function() {
-			TicketMaster.trello.genCols("./dump", function() {
-				
+		TicketMaster.trello.genBoards("./dump", function(board_ids) {
+			TicketMaster.trello.genCols("./dump", board_ids, function(col_ids) {
+				console.log(col_ids);
+				TicketMaster.trello.genTickets("./dump", col_ids, function() {
+
+				});
 			});
 		});
 	})

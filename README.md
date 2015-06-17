@@ -35,6 +35,9 @@ Ticket Master
     -V, --version              output the version number
     -k --trello_key <key>      Trello authentication key.
     -t --trello_token <token>  Trello authentication token.
+    -b <board_id>
+    -l <list_id>
+    -t <ticket_id>
 
 
 

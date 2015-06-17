@@ -1,13 +1,13 @@
 =======
 Ticket Master
 =============
-	##If node not installed:
-		sudo apt-get install nodejs
-		(Program looks for node in /usr/bin/env node)
+##If node not installed:
+	sudo apt-get install nodejs
+(Program looks for node in /usr/bin/env node)
 	
-	#Get dependencies
+#Get dependencies
 	npm install
-	#Run
+#Run
 	./TicketMaster.js
 
   Commands:
@@ -27,11 +27,11 @@ Ticket Master
 
 Commands to implement:
 
--[x] 	Get a list of boards for a given user
--[x] 	Get a list of 'columns' for a given user
--[ ] 	Get 'tickets' in a column
--[ ] 	Get 'comments' for a ticket
--[ ] 	Get attachments for a ticket
+-[x] Get a list of boards for a given user
+-[x] Get a list of 'columns' for a given user
+-[ ] Get 'tickets' in a column
+-[ ] Get 'comments' for a ticket
+-[ ] Get attachments for a ticket
 
 
 Then I would like to see a command/set of commands that let me build a local directory structure of:
@@ -60,8 +60,8 @@ Then I would like to see a command/set of commands that let me build a local dir
 =======
 Checklist:
 
--[x]	Board
--[x]	Column
--[ ]	Ticket
--[ ]	Comment
--[ ]	Attachment
+-[x]Board
+-[x]Column
+-[ ]Ticket
+-[ ]Comment
+-[ ]Attachment

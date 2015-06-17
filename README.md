@@ -10,22 +10,32 @@ Ticket Master
 #Run
 	./TicketMaster.js
 
-  Usage: TicketMaster [options] [command]
+#Generate auth token
+    //Open new tab in browser with generation url
+    ./TicketMaster.js gentrello
+
+#Test
+    ./TicketMaster.js -k 871a2695a447edbd7ed0e5fa4ea8c390 -t <your generated token> populate
+
+
+
+    Usage: TicketMaster [options] [command]
+
 
   Commands:
 
-    gentrello               Generate a token generation url for trello.
+    gentrello [o]           Generate a token generation url for trello. [open: <y>] open url in browser (defaults to yes)
     boards [output]         Retrieve a list of boards currently accessible to the user. Output -> [directory + filename] to place output, defaults to <username>_boards.json.
     lists [output] [board]  Retrieves lists in specified board. Output -> [directory + filename] to place output, defaults to <username>_boards.json.
     populate                Generate a directory structure containing information concerning current user's board layout.
 
   Options:
 
-
     -h, --help                 output usage information
     -V, --version              output the version number
     -k --trello_key <key>      Trello authentication key.
     -t --trello_token <token>  Trello authentication token.
+
 
 
 ##Commands to implement:

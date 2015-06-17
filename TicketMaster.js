@@ -2,6 +2,9 @@
 "use strict";
 
 var program = require("commander");
+var open = require("open");
+var clip = require("copy-paste").global();
+
 var t = require("./lib/ticketmaster");
 
 var debug = false;
@@ -25,10 +28,22 @@ var options = {
 var TicketMaster = new t(options);
 
 program
-.command("gentrello")
-.description("Generate a token generation url for trello.")
-.action(function(service) {
-	console.log(TicketMaster.trello.genTokenUrl());
+.command("gentrello [o]")
+.description("Generate a token generation url for trello. [open: <y>] open url in browser (defaults to yes)")
+.action(function(open_tab) {
+	var gen_url = TicketMaster.trello.genTokenUrl()
+	open_tab = open_tab || "y";
+	if(open_tab.toLowerCase() == "y") {
+		console.log("Attempting to open...");
+		open(gen_url);
+	} else {
+		console.log("Copying to clipboard: " + gen_url);
+		copy(gen_url, function() {
+			process.exit();
+		});
+	}
+	
+
 });
 
 program
@@ -45,7 +60,6 @@ program
 				Boards[i] = tmp_board;
 				console.log("-" + tmp_board.name);
 			}
-			
 			TicketMaster.dumpJSON(output, Boards, genericCallbackHandler);
 		});
 	});

@@ -1,6 +1,6 @@
 {
   "name": "trello_jira",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,6 @@
     "mkdirp": "^0.5.1",
     "node-trello": "~1.1.2",
     "open": "0.0.5",
-    "clipboard": "~0.1.1",
     "copy-paste": "~1.1.2"
   }
 }

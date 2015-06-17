@@ -8,6 +8,8 @@ var clip = require("copy-paste").global();
 var t = require("./lib/ticketmaster");
 var trello_key = "";
 var trello_token = "";
+require("./lib/utils");
+
 
 var debug = false;
 
@@ -99,11 +101,20 @@ program
 		TicketMaster.trello.genBoards("./dump", function(board_ids) {
 			TicketMaster.trello.genCols("./dump", board_ids, function(col_ids) {
 				TicketMaster.trello.genTickets("./dump", col_ids, function() {
-
+					console.log(col_ids);
 				});
 			});
 		});
-	})
+	});
+});
+
+program
+.command("testjira")
+.description("Test jira")
+.action(function() {
+	TicketMaster.jira.test(function(res) {
+		console.log(res);
+	});
 });
 
 program.parse(process.argv);

@@ -1,25 +1,25 @@
 =======
 Ticket Master
 =============
-#If node not installed:
+##If node not installed:
 	sudo apt-get install nodejs
 ##(Program looks for node in /usr/bin/env node)
 	
-#Get dependencies
+##Get dependencies
 	npm install
-#Run
+##Run
 	./TicketMaster.js
 
-#Generate auth token
+##Generate auth token
     //Open new tab in browser with generation url
     ./TicketMaster.js gentrello
 
-#Test
+##Test
     ./TicketMaster.js -k 871a2695a447edbd7ed0e5fa4ea8c390 -t <your generated token> populate
 
 
 
-    Usage: TicketMaster [options] [command]
+   Usage: TicketMaster [options] [command]
 
 
   Commands:
@@ -46,21 +46,24 @@ Ticket Master
 	-[ ] Get 'comments' for a ticket
 	-[ ] Get attachments for a ticket
 
-#Directory Structure:
+##Directory & File Layout:
 ==
     |
     +- Board
+    |	-board_<board-name>.json
     |    +-- Column
+    |	 -column_<column-name>.json
     |    |      +- Ticket
-    |    |      |    +- Comment
-    |    |      |    +- Comment
-    |    |      |    +- Comment
-    |    |      |    +- Comment
-    |    |      |    +- Attachment
-    |    |      |    +- Attachment
-    |    |      +- Ticket
-    |    |      +- Ticket
-    |    |      +- Ticket
+    |	 |	-ticket_<ticket-name>.json
+    |    |      |   [ - Comment
+    |    |      |    - Comment
+    |    |      |    - Comment
+    |    |      |    - Comment
+    |    |      |    - Attachment
+    |    |      |    - Attachment ]
+    |    |      +- Ticket [...]
+    |    |      +- Ticket [...]
+    |    |      +- Ticket [...]
     |    +-- Column
     |    +-- Column
     |    +-- Column
@@ -69,7 +72,7 @@ Ticket Master
     ...
 
 
-Checklist:
+##Checklist:
 ==
 
 	-[x]Board

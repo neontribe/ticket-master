@@ -1,36 +1,21 @@
 #!/usr/bin/env node
+"use strict";
+
 var program = require("commander");
+var open = require("open");
+var clip = require("copy-paste").global();
+
+var t = require("./lib/ticketmaster");
+var trello_key = "";
+var trello_token = "";
 
 var debug = false;
 
 program
 .version("0.0.1")
-.option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
-.option("-t --trello_token <token>", "Trello authentication token.", String, "8077e49daea2a73864d47da3561918650e387bf23330064acc5668cc8fa38b76")
-
-function genericCallbackHandler(a) {
-	if(debug) {
-		console.log(a);
-	}
-}
-
-function Board(id, name, desc, url) {
-
-	return {id: id, name: name, desc: desc, url: url};
-}
-
-//List
-function Group(id, name, closed, parent_board) {
-	return {id: id, name: name, closed: closed, parent_board: parent_board};
-}
-
-function Ticket() {
-
-}
-
-function Comment() {
-
-}
+.option("-k --trello_key <key>", "Trello authentication key.")
+.option("-t --trello_token <token>", "Trello authentication token.")
+.parseOptions(program.normalize(process.argv.slice(2)));
 
 var options = {
 	trello: {
@@ -43,14 +28,23 @@ var options = {
 	}
 }
 
-var t = require("./lib/ticketmaster");
 var TicketMaster = new t(options);
 
 program
-.command("gentrello")
-.description("Generate a token generation url for trello.")
-.action(function(service) {
-	console.log(TicketMaster.trello.genTokenUrl());
+.command("gentrello [o]")
+.description("Generate a token generation url for trello. [open: <y>] open url in browser (defaults to yes)")
+.action(function(open_tab) {
+	var gen_url = TicketMaster.trello.genTokenUrl()
+	open_tab = open_tab || "y";
+	if(open_tab.toLowerCase() == "y") {
+		console.log("Attempting to open...");
+		open(gen_url);
+	} else {
+		console.log("Copying to clipboard: " + gen_url);
+		copy(gen_url, function() {
+			process.exit();
+		});
+	}
 });
 
 program
@@ -67,7 +61,6 @@ program
 				Boards[i] = tmp_board;
 				console.log("-" + tmp_board.name);
 			}
-			
 			TicketMaster.dumpJSON(output, Boards, genericCallbackHandler);
 		});
 	});
@@ -96,6 +89,21 @@ program
 			});
 		});
 	});
+});
+
+program
+.command("populate")
+.description("Generate a directory structure containing information concerning current user's board layout.")
+.action(function() {
+	TicketMaster.init(function() {
+		TicketMaster.trello.genBoards("./dump", function(board_ids) {
+			TicketMaster.trello.genCols("./dump", board_ids, function(col_ids) {
+				TicketMaster.trello.genTickets("./dump", col_ids, function() {
+
+				});
+			});
+		});
+	})
 });
 
 program.parse(process.argv);

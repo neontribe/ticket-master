@@ -25,8 +25,9 @@ var options = {
 		token: program.trello_token
 	},
 	jira: {
-		key: "",
-		token: ""
+		host: "jira.neontribe.org",
+		username: "Oliver Barnwell",
+		password: ""
 	}
 }
 
@@ -112,8 +113,8 @@ program
 .command("testjira")
 .description("Test jira")
 .action(function() {
-	TicketMaster.jira.test(function(res) {
-		console.log(res);
+	TicketMaster.jira.get("rest/api/2/issue/WL-241", function(res) {
+		
 	});
 });
 

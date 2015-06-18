@@ -7,8 +7,15 @@ Ticket Master
 	
 ##Get dependencies
 	npm install
+==
 ##Run
 	./index.js
+==
+##Tests
+	npm test
+==
+##Watch (jshint)
+	npm watch
 
 ##Generate auth token
     Open new tab in browser with generation url

@@ -1,0 +1,6 @@
+{
+	"ignore": ["./node_modules", "./dump"],
+	"ext": "js",
+	"watch": "./",
+	"exec": "npm test"
+}

@@ -1,12 +1,17 @@
 {
-  "name": "trello_jira",
-  "version": "0.0.1",
-  "description": "",
+  "name": "Ticket Master",
+  "version": "0.0.2",
+  "description": "Manages tickets and stuff",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./tests/**/*.spec.js",
+    "watch": "nodemon",
+    "jshint": "jshint ./"
   },
-  "author": "",
+  "bin": {
+    "ticket-master": "./index.js"
+  },
+  "author": "Oliver Barnwell",
   "license": "BSD-2-Clause",
   "dependencies": {
     "commander": "~2.8.1",
@@ -15,6 +20,12 @@
     "node-trello": "~1.1.2",
     "open": "0.0.5",
     "copy-paste": "~1.1.2",
-    "request": "~2.58.0"
+    "request": "~2.58.0",
+    "docco": "~0.7.0"
+  },
+  "devDependencies": {
+    "jshint": "~2.8.0",
+    "nodemon": "~1.3.7",
+    "mocha": "~2.2.5"
   }
 }

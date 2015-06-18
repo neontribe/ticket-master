@@ -15,8 +15,10 @@ var debug = false;
 
 program
 .version("0.0.1")
-.option("-k --trello_key <key>", "Trello authentication key.")
-.option("-t --trello_token <token>", "Trello authentication token.")
+.option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
+.option("-t --trello_token <token>", "Trello authentication token.", String, "398411e775409884ed1ca871ce2d4ada7e1e296ab27cf2a0656dc8fef1cbc090")
+.option("-u --jira_username <username>", "Jira username.", String, "")
+.option("-p --jira_password <password>", "Jira password.", String, "")
 .parseOptions(program.normalize(process.argv.slice(2)));
 
 var options = {
@@ -26,8 +28,8 @@ var options = {
 	},
 	jira: {
 		host: "jira.neontribe.org",
-		username: "Oliver Barnwell",
-		password: "b191wkm"
+		username: program.jira_username,
+		password: program.jira_password
 	}
 }
 
@@ -113,8 +115,8 @@ program
 .command("testjira")
 .description("Test jira")
 .action(function() {
-	TicketMaster.jira.get("rest/api/2/issue/WL-241", function(res) {
-		
+	TicketMaster.jira.get("rest/api/2/issue/WL-241", function(err, res) {
+		console.log(res);
 	});
 });
 

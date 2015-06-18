@@ -17,6 +17,8 @@ program
 .option("-d --debug", "Set debug mode <bool>.", Boolean, false)
 .parseOptions(program.normalize(process.argv.slice(2)));
 
+program._name = "Ticket Master";
+
 GLOBAL.debug = program.debug;
 
 var options = {

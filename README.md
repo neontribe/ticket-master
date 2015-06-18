@@ -8,15 +8,15 @@ Ticket Master
 ##Get dependencies
 	npm install
 ##Run
-	./TicketMaster.js
+	./index.js
 
 ##Generate auth token
-    //Open new tab in browser with generation url
-    ./TicketMaster.js gentrello
+    Open new tab in browser with generation url
+    ./index.js gentrello
 
 ##Test
-    //Trello
-    ./TicketMaster.js -k 871a2695a447edbd7ed0e5fa4ea8c390 -t <your generated token> populate
+    Trello
+    ./index.js -k 871a2695a447edbd7ed0e5fa4ea8c390 -t <your generated token> populate
 
     //Jira
     ./TicketMaster.js -u "your username" -p "your password" testjira

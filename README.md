@@ -18,8 +18,8 @@ Ticket Master
     Trello
     ./index.js -k 871a2695a447edbd7ed0e5fa4ea8c390 -t <your generated token> populate
 
-    //Jira
-    ./TicketMaster.js -u "your username" -p "your password" testjira
+    Jira
+    ./index.js -u "your username" -p "your password" testjira
    
 
 
@@ -77,14 +77,3 @@ Ticket Master
     |
     +- Board
     ...
-
-
-##Checklist:
-==
-
-	-[x]Board
-	-[x]Column
-	-[x]Ticket
-		-[x]Comment
-		-[x]Attachment
-

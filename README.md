@@ -84,7 +84,7 @@ Ticket Master
 
 	-[x]Board
 	-[x]Column
-	-[ ]Ticket
-	-[ ]Comment
-	-[ ]Attachment
+	-[x]Ticket
+		-[x]Comment
+		-[x]Attachment
 

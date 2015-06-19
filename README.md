@@ -3,7 +3,6 @@ Ticket Master
 =============
 ##If node not installed:
 	sudo apt-get install nodejs
-##(Program looks for node in /usr/bin/env node)
 	
 ##Get dependencies
 	npm install

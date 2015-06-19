@@ -6,10 +6,12 @@ var program = require("commander");
 var open = require("open");
 var clip = require("copy-paste").global();
 var http = require("http");
+var glob = require("glob");
+var fs = require("fs");
 
 
 var t = require("./lib/ticketmaster");
-require("./lib/utils");
+var utils = require("./lib/utils");
 
 program
     .version(require('./package').version)
@@ -143,22 +145,46 @@ program
     .command("testjira")
     .description("Test jira")
     .action(function() {
-        TicketMaster.jira.get("rest/api/2/project", function(err, res) {
+        TicketMaster.jira.get("rest/api/2/issue/WL-241", function(err, res) {
             console.log(res.body);
         });
     });
 
 program
-	.command("serve")
-	.description("Start ticket management server (port 8080)")
-	.action(function() {
-		http.createServer(function(req, res) { 
-			var url = req.url;
-			var param = url.split("/")[1];
-			
-			
+    .command("serve")
+    .description("Start ticket management server (port 8080)")
+    .action(function() {
+        http.createServer(function(req, res) {
+            var path = req.url.split("/");
 
-		}).listen(8080);
-	});
+            switch (path[1]) {
+                case "board":
+                	var board_name = path[2];
+
+                	if(board_name == "") {
+                		res.write(JSON.stringify({
+                			"boards": utils.listDirs("./dump/")
+                		}));
+                		res.end();
+                	}
+
+                    fs.readFile("./dump/" + board_name + "/board_" + board_name + ".json", function(err, data) {
+                    	if(err) {
+                    		res.write(err.toString());
+                    		res.end();
+                    		return;
+                    	}
+                    	res.write(data.toString());
+                    	res.end();
+                    	return;
+                    });
+                    break;
+                default:
+                    res.write("Hello");
+                    res.end();
+                    break;
+            }
+        }).listen(8080);
+    });
 
 program.parse(process.argv);

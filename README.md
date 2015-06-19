@@ -56,9 +56,9 @@ Ticket Master
 
 	-[x] Get a list of boards for a given user
 	-[x] Get a list of 'columns' for a given user
-	-[ ] Get 'tickets' in a column
-	-[ ] Get 'comments' for a ticket
-	-[ ] Get attachments for a ticket
+	-[x] Get 'tickets' in a column
+	-[x] Get 'comments' for a ticket
+	-[x] Get attachments for a ticket
 
 ##Directory & File Layout:
 ==
@@ -84,3 +84,21 @@ Ticket Master
     |
     +- Board
     ...
+
+GUI Planning
+========
+
+Start a ticket management instance on specified port number.
+./index serve <port>
+
+
+
+
+
+
+
+
+
+
+
+

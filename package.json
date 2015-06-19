@@ -1,12 +1,13 @@
 {
   "name": "TicketMaster",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Manages tickets and stuff",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./tests/**/*.spec.js",
     "watch": "nodemon",
-    "jshint": "jshint ./index.js"
+    "jshint": "jshint ./index.js",
+    "gendoc": "docco ./lib/*.js"
   },
   "bin": {
     "ticket-master": "./index.js"

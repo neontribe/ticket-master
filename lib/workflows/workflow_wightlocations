@@ -1,0 +1,9 @@
+{
+	issue_mapping: {
+		"blocked": "blocked/awaiting approval",
+		"wish list": "wish list",
+		"to do": "to do",
+		"working on it": "working on it" ,
+		"testing": "ready for testing"
+	}
+}

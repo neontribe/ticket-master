@@ -156,18 +156,15 @@ program
     .action(function() {
         http.createServer(function(req, res) {
             var path = req.url.split("/");
-
             switch (path[1]) {
                 case "board":
                 	var board_name = path[2];
-
                 	if(board_name == "") {
                 		res.write(JSON.stringify({
                 			"boards": utils.listDirs("./dump/")
                 		}));
                 		res.end();
                 	}
-
                     fs.readFile("./dump/" + board_name + "/board_" + board_name + ".json", function(err, data) {
                     	if(err) {
                     		res.write(err.toString());

@@ -3,12 +3,18 @@ Ticket Master
 =============
 ##If node not installed:
 	sudo apt-get install nodejs
-##(Program looks for node in /usr/bin/env node)
 	
 ##Get dependencies
 	npm install
+==
 ##Run
 	./index.js
+==
+##Tests
+	npm test
+==
+##Watch (jshint)
+	npm watch
 
 ##Generate auth token
     Open new tab in browser with generation url
@@ -18,8 +24,8 @@ Ticket Master
     Trello
     ./index.js -k 871a2695a447edbd7ed0e5fa4ea8c390 -t <your generated token> populate
 
-    //Jira
-    ./TicketMaster.js -u "your username" -p "your password" testjira
+    Jira
+    ./index.js -u "your username" -p "your password" testjira
    
 
 
@@ -49,9 +55,9 @@ Ticket Master
 
 	-[x] Get a list of boards for a given user
 	-[x] Get a list of 'columns' for a given user
-	-[ ] Get 'tickets' in a column
-	-[ ] Get 'comments' for a ticket
-	-[ ] Get attachments for a ticket
+	-[x] Get 'tickets' in a column
+	-[x] Get 'comments' for a ticket
+	-[x] Get attachments for a ticket
 
 ##Directory & File Layout:
 ==
@@ -78,13 +84,20 @@ Ticket Master
     +- Board
     ...
 
+GUI Planning
+========
 
-##Checklist:
-==
+Start a ticket management instance on specified port number.
+./index serve <port>
 
-	-[x]Board
-	-[x]Column
-	-[x]Ticket
-		-[x]Comment
-		-[x]Attachment
+
+
+
+
+
+
+
+
+
+
 

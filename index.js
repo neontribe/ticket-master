@@ -145,11 +145,11 @@ program
     });
 
 program
-    .command("testjira")
+    .command("testjira [issue]")
     .description("Test jira")
-    .action(function() {
-        TicketMaster.jira.get("rest/api/2/issue/WL-241", function(err, res) {
-            console.log(res.body);
+    .action(function(issue) {
+        TicketMaster.jira.getIssue(issue, function(err, res) {
+            console.log(res.body.fields.status);
         });
     });
 
@@ -157,7 +157,7 @@ program
     .command("serve")
     .description("Start ticket management server (port 8080)")
     .action(function() {
-        console.log("todo: make a module for this");
+        console.log("TODO: make a module for this");
         // http.createServer(function(req, res) {
         //     var path = req.url.split("/");
         //     switch (path[1]) {

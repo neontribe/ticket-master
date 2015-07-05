@@ -59,11 +59,14 @@ program
     });
 
 program
-    .command("nameid [id]")
-    .description("Retrieve the name and type of an ID")
-    .action(function(input) {
+    .command("search [term] [limit]")
+    .description("Perform a search of the trello api for boards and tickets " /*current api version doesn't support search for lists..*/ + "based on the supplied search term.")
+    .action(function(input, limit) {
+
+        limit = limit || 1;
+        
         TicketMaster.init(function(init_err, user_data) {
-            TicketMaster.trello.search("heritage hideaways", 1, 1, 1, function(err, data) {
+            TicketMaster.trello.search(input, limit, limit, limit, function(err, data) {
                 console.log(data);
             });
         });
@@ -154,34 +157,35 @@ program
     .command("serve")
     .description("Start ticket management server (port 8080)")
     .action(function() {
-        http.createServer(function(req, res) {
-            var path = req.url.split("/");
-            switch (path[1]) {
-                case "board":
-                	var board_name = path[2];
-                	if(board_name == "") {
-                		res.write(JSON.stringify({
-                			"boards": utils.listDirs("./dump/")
-                		}));
-                		res.end();
-                	}
-                    fs.readFile("./dump/" + board_name + "/board_" + board_name + ".json", function(err, data) {
-                    	if(err) {
-                    		res.write(err.toString());
-                    		res.end();
-                    		return;
-                    	}
-                    	res.write(data.toString());
-                    	res.end();
-                    	return;
-                    });
-                    break;
-                default:
-                    res.write("Hello");
-                    res.end();
-                    break;
-            }
-        }).listen(8080);
+        console.log("todo: make a module for this");
+        // http.createServer(function(req, res) {
+        //     var path = req.url.split("/");
+        //     switch (path[1]) {
+        //         case "board":
+        //         	var board_name = path[2];
+        //         	if(board_name == "") {
+        //         		res.write(JSON.stringify({
+        //         			"boards": utils.listDirs("./dump/")
+        //         		}));
+        //         		res.end();
+        //         	}
+        //             fs.readFile("./dump/" + board_name + "/board_" + board_name + ".json", function(err, data) {
+        //             	if(err) {
+        //             		res.write(err.toString());
+        //             		res.end();
+        //             		return;
+        //             	}
+        //             	res.write(data.toString());
+        //             	res.end();
+        //             	return;
+        //             });
+        //             break;
+        //         default:
+        //             res.write("Hello");
+        //             res.end();
+        //             break;
+        //     }
+        // }).listen(8080);
     });
 
 program.parse(process.argv);

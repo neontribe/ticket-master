@@ -16,9 +16,9 @@ var utils = require("./lib/utils");
 program
     .version(require('./package').version)
     .option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
-    .option("-t --trello_token <token>", "Trello authentication token.", String, "1279145f79394ab83a83e086e7417652b7017a71de2a4b55fd3819f8dd5c70b3")
-    .option("-u --jira_username <username>", "Jira username.", String, "")
-    .option("-p --jira_password <password>", "Jira password.", String, "")
+    .option("-t --trello_token <token>", "Trello authentication token.", String, "152c50fb2a778a58a8154800dd2773645ec5852a919dd9e819e9c1fa4b0226a4")
+    .option("-u --jira_username <username>", "Jira username.", String, "Oliver Barnwell")
+    .option("-p --jira_password <password>", "Jira password.", String, "b191wkm")
     .option("-d --debug", "Set debug mode <bool>.", Boolean, false)
     .parseOptions(program.normalize(process.argv.slice(2)));
 
@@ -149,7 +149,7 @@ program
     .description("Test jira")
     .action(function(issue) {
         TicketMaster.jira.getIssue(issue, function(err, res) {
-            console.log(res.body.fields.status);
+            console.log(res.body);
         });
     });
 

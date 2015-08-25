@@ -5,6 +5,7 @@ TODO
 #Overall
 -[ ] Add ticket-issue matching using workflow files.
 -[ ] Begin development of ticket management gui
+-[ ] Add OS path formatting
 
 #Trello
 ==

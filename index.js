@@ -8,7 +8,7 @@ var clip = require("copy-paste").global();
 var http = require("http");
 var glob = require("glob");
 var fs = require("fs");
-
+var Templates = require("./lib/data_templates");
 
 var t = require("./lib/ticketmaster");
 var utils = require("./lib/utils");
@@ -92,25 +92,26 @@ program
     });
 
 program
-    .command("lists [output] [board]")
-    .description("Retrieves cols in specified board. Output -> [directory + filename] to place output, defaults to <username>_boards.json.")
-    .action(function(output, board) {
+    .command("lists [board] [output]")
+    .description("Retrieves cols in specified board. Output -> [directory + filename] to place output, defaults to boards.json.")
+    .action(function(board, output) {
+
         TicketMaster.init(function(init_err, user) {
             var board_id = 0;
-            TicketMaster.trello.getBoards(function(e, d) {
+            TicketMaster.trello.getBoards(board, function(e, d) {
                 for (var i = 0; i < d.length; i++) {
                     if (d[i].name == board) {
                         board_id = d[i].id;
                     }
                 }
-                output = output || user.fullName + board + "_cols.json";
-                TicketMaster.trello.getLists(board_id, function(err, data) {
+                output = output || board + "_cols.json";
+                TicketMaster.trello.getCols(null, board_id, function(err, data) {
                     var Lists = {};
                     for (var i = 0; i < data.length; i++) {
-                        var tmp_list = Group(data[i].id, data[i].name, data[i].closed, data[i].idBoard);
+                        var tmp_list = new Templates.column(data[i]);
                         Lists[i] = tmp_list;
                     }
-                    TicketMaster.dumpJSON(output, Lists, genericCallbackHandler);
+                    TicketMaster.dumpJSON(output, Lists, utils.genericCallbackHandler);
                 });
             });
         });
@@ -131,7 +132,7 @@ program
         } else {
             column = null;
             ticket = null;
-        }
+        };
 
         TicketMaster.init(function() {
             TicketMaster.trello.genBoards("./dump", board, true, function(board_ids) {

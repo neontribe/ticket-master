@@ -16,7 +16,7 @@ var utils = require("./lib/utils");
 program
     .version(require('./package').version)
     .option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
-    .option("-t --trello_token <token>", "Trello authentication token.", String, "152c50fb2a778a58a8154800dd2773645ec5852a919dd9e819e9c1fa4b0226a4")
+    .option("-t --trello_token <token>", "Trello authentication token.", String, "7da0903ee016460595090b92b130aedf2dc00f45cbde83617133aa85dffa8d84")
     .option("-u --jira_username <username>", "Jira username.", String, "Oliver Barnwell")
     .option("-p --jira_password <password>", "Jira password.", String, "b191wkm")
     .option("-d --debug", "Set debug mode <bool>.", Boolean, false)
@@ -134,10 +134,12 @@ program
         }
 
         TicketMaster.init(function() {
-            TicketMaster.trello.genBoards("./dump", board, function(board_ids) {
-                TicketMaster.trello.genCols("./dump", column, board_ids, function(col_ids) {
-                    TicketMaster.trello.genTickets("./dump", ticket, col_ids, function(tick_ids) {
+            TicketMaster.trello.genBoards("./dump", board, true, function(board_ids) {
+                TicketMaster.trello.genCols("./dump", column, board_ids, true, function(col_ids) {
+                    TicketMaster.trello.genTickets("./dump", ticket, col_ids, true, function(tick_ids) {
+                        TicketMaster.reviewTickets(tick_ids, function() {
 
+                        });
                     });
                 });
             });

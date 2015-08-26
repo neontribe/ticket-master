@@ -15,6 +15,7 @@
   "author": "Oliver Barnwell",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "chai": "^3.2.0",
     "colors": "^1.1.2",
     "commander": "~2.8.1",
     "copy-paste": "~1.1.2",

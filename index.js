@@ -16,9 +16,9 @@ var utils = require("./lib/utils");
 program
     .version(require('./package').version)
     .option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
-    .option("-t --trello_token <token>", "Trello authentication token.", String, "21ed4ce13d76f7887428bc0ceefe1dadf7d5351d33d8e43d2169f6d56a300acb")
-    .option("-u --jira_username <username>", "Jira username.", String, "Oliver Barnwell")
-    .option("-p --jira_password <password>", "Jira password.", String, "b191wkm")
+    .option("-t --trello_token <token>", "Trello authentication token.", String, "")
+    .option("-u --jira_username <username>", "Jira username.", String, "")
+    .option("-p --jira_password <password>", "Jira password.", String, "")
     .option("-d --debug", "Set debug mode <bool>.", Boolean, false)
     .parseOptions(program.normalize(process.argv.slice(2)));
 
@@ -155,7 +155,10 @@ program
         //     console.log(res.body);
         // });
 
-        TicketMaster.jira.getProjectByName(issue, true, function(err, data) {
+        // TicketMaster.jira.getProjectByName(issue, true, function(err, data) {
+        //     console.log(data);
+        // });
+        TicketMaster.jira.getLatest([/*"Wight Locations", */"Ticket-Master Test Project"], function(err, data) {
             console.log(data);
         });
     });

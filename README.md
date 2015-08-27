@@ -1,6 +1,7 @@
 =======
 Ticket Master
 =============
+
 ##If node not installed:
 	sudo apt-get install nodejs
 	
@@ -48,6 +49,16 @@ Ticket Master
     -b <board_id>
     -l <list_id>
     -t <ticket_id>
+
+Terminology: 
+
+(see data_templates.js)
+
+    Trello   Jira       Ticket-Master
+    -------|----------|--------------
+->  Board  |  Project | Board
+->  List   |  ?       | Column
+->  Card   |  Issue   | Ticket
 
 
 

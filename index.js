@@ -17,7 +17,7 @@ program
     .version(require('./package').version)
     .option("-k --trello_key <key>", "Trello authentication key.", String, "871a2695a447edbd7ed0e5fa4ea8c390")
     .option("-t --trello_token <token>", "Trello authentication token.", String, "")
-    .option("-u --jira_username <username>", "Jira username.", String, "")
+    .option("-u --jira_username <username>", "Jira username.", String, "Oliver Barnwell")
     .option("-p --jira_password <password>", "Jira password.", String, "")
     .option("-d --debug", "Set debug mode <bool>.", Boolean, false)
     .parseOptions(program.normalize(process.argv.slice(2)));
@@ -136,7 +136,7 @@ program
 
         TicketMaster.init(function() {
             TicketMaster.trello.genBoards("./dump", board, true, function(board_ids) {
-                TicketMaster.trello.genCols("./dump", column, board_ids, true, function(col_ids) {
+                TicketMaster.trello.genCols("./dump", column, board_ids, false, function(col_ids) {
                     TicketMaster.trello.genTickets("./dump", ticket, col_ids, true, function(tick_ids) {
                         TicketMaster.reviewTickets(tick_ids, function() {
 
@@ -158,7 +158,7 @@ program
         // TicketMaster.jira.getProjectByName(issue, true, function(err, data) {
         //     console.log(data);
         // });
-        TicketMaster.jira.getLatest([/*"Wight Locations", */"Ticket-Master Test Project"], function(err, data) {
+        TicketMaster.jira.getLatest("./dump", [/*"Wight Locations", */"Ticket-Master Test Project"], function(err, data) {
             console.log(data);
         });
     });

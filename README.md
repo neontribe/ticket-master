@@ -2,20 +2,6 @@
 Ticket Master
 =============
 
-##If node not installed:
-	sudo apt-get install nodejs
-	
-##Get dependencies
-	npm install
-==
-##Run
-	./index.js
-==
-##Tests
-	npm test
-==
-##Watch (jshint)
-	npm watch
 
 ##Generate auth token
     Open new tab in browser with generation url
@@ -100,6 +86,24 @@ GUI Planning
 
 Start a ticket management instance on specified port number.
 ./index serve <port>
+
+
+
+
+##If node not installed:
+    sudo apt-get install nodejs
+    
+##Get dependencies
+    npm install
+==
+##Run
+    ./index.js
+==
+##Tests
+    npm test
+==
+##Watch (jshint)
+    npm watch
 
 
 
